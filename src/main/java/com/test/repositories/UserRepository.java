@@ -1,6 +1,7 @@
-package repositories;
+package com.test.repositories;
 
-import model.User;
+
+import com.test.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

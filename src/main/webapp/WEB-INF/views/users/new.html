@@ -5,7 +5,7 @@
     <title>Registration</title>
 </head>
 <body>
- <form th:method="POST" th:action = "@{users}" th:object="${user}">
+ <form th:method="POST" th:action = "@{/users}" th:object="${user}">
      <label for="name">Enter name</label>
      <input type="text" th:field = "*{name}" id="name" />
      <br/>
@@ -15,7 +15,7 @@
      <label for="email">Enter email</label>
      <input type="text" th:field = "*{email}" id="email" />
      <br/>
-     <input type="sumbit" value="create"/>
+     <input type="submit" value="Create"/>
  </form>
 </body>
 </html>

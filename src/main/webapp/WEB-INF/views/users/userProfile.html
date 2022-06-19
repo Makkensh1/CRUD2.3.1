@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns: th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <style>
+        div{
+            padding: 5px;
+        }
+    </style>
+
 </head>
 <body>
+<!--<p th:text="${user.getName()}">VALUE</p>-->
+<!--<br/>-->
+<!--<p th:text="${user.getSurName()}">VALUE</p>-->
+<!--<br/>-->
+<!--<p th:text="${user.getEmail()()}">VALUE</p>-->
+<!--<br/>-->
+<!--<p th:text="${user.getCash()}">VALUE</p>-->
+<form th:method="patch" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+    <div>
+        <label for="name">Имя:</label>
+        <input type="text" th:field="*{user.getName()}" id="name">
 
-<p th:text = "${user.getName()}">VALUE</p>
-<p th:text = "${user.getSurName()}">VALUE</p>
+    </div>
+
+    <div>
+        <label for="age">Возраст:</label>
+        <input type="text" th:field="${user.getSurName()}" id="age">
+
+    </div>
+
+    <div>
+        <label for="mail">E-mail:</label>
+        <input type="text" th:field="${user.getEmail()}" id="mail">
+
+    </div>
+
+</form>
+
 </body>
 </html>
