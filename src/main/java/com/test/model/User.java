@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name = "user")
 public class User extends Human {
 
     @Id

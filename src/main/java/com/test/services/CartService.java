@@ -6,5 +6,5 @@ import com.test.model.Order;
 
 public interface CartService  {
 
-    public Order createOrderByCart (Cart cart);
+    public void createOrderByCart (Cart cart);
 }

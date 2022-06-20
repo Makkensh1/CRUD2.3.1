@@ -21,7 +21,6 @@
 
     <dependencies>
 
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -35,12 +34,6 @@
             <version>3.0.15.RELEASE</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons</artifactId>
-            <version>2.7.0</version>
-        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
@@ -57,8 +50,6 @@
             <version>5.6.9.Final</version>
         </dependency>
 
-
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -69,6 +60,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>5.3.20</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.6.9.Final</version>
         </dependency>
 
 

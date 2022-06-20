@@ -19,8 +19,8 @@ public class Order {
 
     private double orderCost;
 
-    @OneToMany
-    private List<Product> productList;
+
+
 
     public User getOrderOwner() {
         return orderOwner;
@@ -42,13 +42,7 @@ public class Order {
         this.orderCost = orderCost;
     }
 
-    public List<Product> getProductList() {
-        return productList;
-    }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
 }
 
 

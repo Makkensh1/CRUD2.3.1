@@ -4,32 +4,29 @@ package com.test.services;
 import com.test.exceptions.NoEntityException;
 import com.test.model.User;
 import com.test.repositories.UserRepository;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
 @Service
 @ComponentScan
+@Transactional
 public class UserServiceImpl implements UserService {
 
-    private final SessionFactory sessionFactory;
+
     private final UserRepository repository;
 
-    @Autowired
-    public UserServiceImpl(SessionFactory session, UserRepository repository) {
-        this.sessionFactory = session;
+
+    public UserServiceImpl(UserRepository repository) {
+
         this.repository = repository;
     }
 
-    @Transactional
+
     public User getUser(Long id) throws NoEntityException {
         return repository.findById(id).orElseThrow(() -> new NoEntityException(id));
     }
@@ -43,39 +40,19 @@ public class UserServiceImpl implements UserService {
         repository.save(newUser);
     }
 
+
     public void addUser(User user) {
-        repository.save(user);
+        User user1 = new User("vas", "das", "cas", 40);
+        repository.save(user1);
         System.out.println("User added");
     }
 
-    @Override
-    public void changeUserById(Long id, String userName, String userSurName, String userEmail, double userCash) {
-        Transaction transaction = null;
-        Session session = sessionFactory.openSession();
-        try {
-            transaction = session.beginTransaction();
-            Query query = session.createQuery("UPDATE User set name = :nameParam, surName = :surNameParam, " +
-                    "email = :emailParam, cash =:cashParam where id =: idParam");
-            query.setParameter("idParam", id);
-            query.setParameter("nameParam", userName);
-            query.setParameter("emailParam", userEmail);
-            query.setParameter("surNameParam", userSurName);
-            query.setParameter("cashParam", userCash);
-            query.executeUpdate();
-            transaction.commit();
-        } catch (
-                Exception ex) { // не ловит no entityException
-            if (transaction == null) {
-                transaction.rollback();
-            }
 
-        } finally {
-            sessionFactory.close();
-        }
-
+    public void changeUserById(User user) {
+        repository.save(user);
     }
 
     public List<User> getAllUsers() {
-        return  (List<User>) repository.findAll();
+        return (List<User>) repository.findAll();
     }
 }

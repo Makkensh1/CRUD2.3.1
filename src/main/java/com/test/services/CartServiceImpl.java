@@ -3,22 +3,28 @@ package com.test.services;
 import com.test.model.Cart;
 import com.test.model.Order;
 import com.test.repositories.CartRepository;
+import com.test.repositories.OrderRepository;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
+@Component
 public class CartServiceImpl implements CartService{
 
-    SessionFactory sessionFactory;
-    CartRepository cartRepository;
 
-    public CartServiceImpl(SessionFactory sessionFactory, CartRepository cartRepository) {
-        this.sessionFactory = sessionFactory;
+    CartRepository cartRepository;
+    OrderRepository orderRepository;
+
+
+    public CartServiceImpl( CartRepository cartRepository, OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
         this.cartRepository = cartRepository;
     }
 
     @Override
-    public Order createOrderByCart(Cart cart) {
+    public void createOrderByCart(Cart cart) {
         if (cart.getCartOwner().getCash() >= cart.getCartCost()) {
             Cart cartInDB = cart;
             cartInDB.getCartOwner().setCash(cartInDB.getCartOwner().getCash() - cartInDB.getCartCost());
@@ -27,10 +33,10 @@ public class CartServiceImpl implements CartService{
             Order order = new Order();
             order.setOrderOwner(cart.getCartOwner());
             order.setOrderCost(cart.getCartCost());
-            order.setProductList(cart.getProductList());
-
+//            order.setProductList(cart.getProductList());
+            orderRepository.save(order);
         }
 
-        return null;
+
     }
 }
