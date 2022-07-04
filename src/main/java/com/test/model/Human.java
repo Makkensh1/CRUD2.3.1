@@ -1,22 +1,28 @@
 package com.test.model;
 
+import javax.persistence.*;
+
+@MappedSuperclass
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Human {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected Long id;
 
-    private String name;
-    private String surName;
+    @Column(name = "name")
+    protected String name;
+    @Column(name = "surname")
+    protected String surName;
 
-    private String email;
+    @Column(name = "email")
+    protected String email;
 
-    public Human() {
-    }
+    @Column(name = "password")
+    protected String password;
 
-    public Human(String name, String surName, String email) {
-        this.name = name;
-        this.surName = surName;
-        this.email = email;
-    }
+    @Transient
+    transient private String confirmPassword;
 
     public String getName() {
         return name;
@@ -42,7 +48,23 @@ public abstract class Human {
         this.email = email;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

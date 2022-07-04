@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <style>
+        div{
+            padding: 5px;
+        }
+    </style>
+
+</head>
+<body>
+
+<b>Имя пользователя</b>
+<p th:text="${user.getName()}"></p>
+<br/>
+<b>Фамилия пользователя</b>
+<p th:text="${user.getSurName()}"></p>
+<br/>
+<b>Email</b>
+<p th:text="${user.getEmail()}"></p>
+<br/>
+<b>Средства</b>
+<p th:text="${user.getCash()}"></p>
+
+
+
+
+</body>
+</html>

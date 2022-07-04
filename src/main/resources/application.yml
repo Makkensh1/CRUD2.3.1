@@ -1,0 +1,15 @@
+server:
+  port:3306
+
+
+spring:
+  autoconfigure:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/database_1
+    username: root
+    password: 12345
+  jpa:
+    show-sql: true
+
+

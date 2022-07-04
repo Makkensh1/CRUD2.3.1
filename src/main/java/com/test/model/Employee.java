@@ -1,17 +1,31 @@
 package com.test.model;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
+import java.util.Collection;
 
+
+@Entity
+@Table
 public class Employee extends Human {
 
     private double salary;
+
+    @Enumerated
     private Position position;
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "employee_roles",
+            joinColumns = @JoinColumn(
+                    name = "employee_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 }
 
-@Component
+
+
 enum Position {
     Manager,
-    Storekeeper
+    Admin
 }

@@ -3,18 +3,28 @@ package com.test.model;
 import javax.persistence.*;
 
 
-public abstract class Product {
-    private String title;
+@Entity
+public  class Product  <T> {
+
+    private String manufacturer;
+
     private double cost;
 
+
+    private T productType;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public String getTitle() {
-        return title;
+    private long stockBalance;
+
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setManufacturer(String title) {
+        this.manufacturer = title;
     }
 
     public double getCost() {
@@ -25,33 +35,15 @@ public abstract class Product {
         this.cost = cost;
     }
 
-    public Product(String name, double cost) {
-        this.title = name;
+    public Product(String manufacturer, double cost, T productType, long stockBalance) {
+        this.manufacturer = manufacturer;
         this.cost = cost;
+        this.productType = productType;
+        this.stockBalance = stockBalance;
     }
 
     public Product() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-
-        Product product = (Product) o;
-
-        if (Double.compare(product.cost, cost) != 0) return false;
-        return title != null ? title.equals(product.title) : product.title == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = title != null ? title.hashCode() : 0;
-        temp = Double.doubleToLongBits(cost);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
 }
 

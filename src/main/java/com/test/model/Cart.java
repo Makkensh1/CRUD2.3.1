@@ -1,7 +1,7 @@
 package com.test.model;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity
 @Table

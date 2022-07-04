@@ -4,13 +4,11 @@ import com.test.model.Cart;
 import com.test.model.Order;
 import com.test.repositories.CartRepository;
 import com.test.repositories.OrderRepository;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 @Service
-@Component
+@ComponentScan
 public class CartServiceImpl implements CartService{
 
 

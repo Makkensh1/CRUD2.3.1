@@ -1,4 +1,4 @@
-package com.test.web.controller;
+package com.test.controller;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@ComponentScan
 public class BaseController {
 
     @GetMapping("/")
@@ -18,6 +17,6 @@ public class BaseController {
         messages.add("Hello!");
 
         model.addAttribute("messages", messages);
-        return "mainPage";
+        return "users/mainPage";
     }
 }

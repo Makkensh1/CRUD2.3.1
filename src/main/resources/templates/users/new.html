@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
@@ -7,13 +7,13 @@
 <body>
  <form th:method="POST" th:action = "@{/users}" th:object="${user}">
      <label for="name">Enter name</label>
-     <input type="text" th:field = "*{name}" id="name" />
+     <input type="text" th:field="*{name}" id="name" />
      <br/>
-     <label for="surName">Enter surname</label>
-     <input type="text" th:field = "*{surName}" id="surName" />
+     <label for="surName">Enter surname:</label>
+     <input type="text" th:field="*{surName}" id="surName" />
      <br/>
      <label for="email">Enter email</label>
-     <input type="text" th:field = "*{email}" id="email" />
+     <input type="text" th:field="*{email}" id="email" />
      <br/>
      <input type="submit" value="Create"/>
  </form>

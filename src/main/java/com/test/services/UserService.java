@@ -1,5 +1,7 @@
 package com.test.services;
 
-public interface UserService {
+import com.test.model.User;
 
+public interface UserService {
+    User finByEmail(String email);
 }
