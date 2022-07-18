@@ -1,17 +1,18 @@
 package com.test.model;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 
 @Entity
 @Table
+@Getter
 public class Employee extends Human {
 
     private double salary;
-
-    @Enumerated
-    private Position position;
 
     @ManyToMany
     @JoinTable(
@@ -20,12 +21,9 @@ public class Employee extends Human {
                     name = "employee_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private Set<Role> roles;
+
 }
 
 
 
-enum Position {
-    Manager,
-    Admin
-}

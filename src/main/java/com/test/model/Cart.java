@@ -1,10 +1,18 @@
 package com.test.model;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table
+@Data
+@RequiredArgsConstructor
+
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,48 +22,8 @@ public class Cart {
     @JoinColumn(name = "email")
     private  User cartOwner;
 
-
-
     private double cartCost;
 
     private boolean statusPaid;
-
-    public Cart(User user, double cartCost) {
-        this.cartOwner = user;
-
-        this.cartCost = cartCost;
-        this.statusPaid = false;
-    }
-
-
-
-    public Cart() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getCartOwner() {
-        return cartOwner;
-    }
-
-
-
-    public double getCartCost() {
-        return cartCost;
-    }
-
-    public void setCartCost(double cartCost) {
-        this.cartCost = cartCost;
-    }
-
-    public boolean isStatusPaid() {
-        return statusPaid;
-    }
-
-    public void setStatusPaid(boolean statusPaid) {
-        this.statusPaid = statusPaid;
-    }
 
 }

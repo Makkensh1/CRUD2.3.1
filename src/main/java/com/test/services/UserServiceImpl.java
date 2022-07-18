@@ -18,12 +18,16 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private  UserRepository repository;
+    
+    private UserRepository repository;
 
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    public UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.repository = repository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     public User getUser(Long id) throws NoEntityException {
         return repository.findById(id).orElseThrow(() -> new NoEntityException(id));
@@ -32,7 +36,6 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         repository.deleteById(id);
     }
-
 
 
     public void addUser(User user) {
