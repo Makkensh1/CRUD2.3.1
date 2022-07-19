@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Order {
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "email")
+    @JoinColumn(name = "user_id")
     private User orderOwner;
 
     @Id
@@ -19,9 +19,14 @@ public class Order {
 
     private double orderCost;
 
-    public User getOrderOwner() {
-        return orderOwner;
-    }
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User user;
 }
 
 

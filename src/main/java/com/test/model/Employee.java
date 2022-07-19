@@ -3,7 +3,6 @@ package com.test.model;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 

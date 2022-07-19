@@ -3,6 +3,7 @@ package com.test.controller;
 import com.test.exceptions.NoEntityException;
 import com.test.model.User;
 import com.test.services.UserServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.annotation.WebServlet;
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping(value = "/users")
+@Slf4j
 public class UserController {
     private final UserServiceImpl userService;
 
@@ -30,9 +33,14 @@ public class UserController {
 
     @PostMapping()
     public String createUser(@ModelAttribute("user") User user) {
-        userService.addUser(user);
-        System.out.println("Пользователь создан");
-        return "users/userCreateSuccess";
+        try {
+            userService.addUser(user);
+            log.info("User created", user.getEmail());
+            return "users/userCreateSuccess";
+        } catch (SQLException e) {
+            return  null; //TODO добавить страницу с ошибкой
+        }
+
     }
 
 

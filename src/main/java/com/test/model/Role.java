@@ -2,6 +2,7 @@ package com.test.model;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Collection;
 @Entity
 @Data
 @ToString
+@NoArgsConstructor
 public class Role {
 
     @Id
@@ -22,10 +24,7 @@ public class Role {
         this.name = name;
     }
 
-    public Role() {
-    }
-
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "employee")
     private Collection<Employee> employees;
 
 }

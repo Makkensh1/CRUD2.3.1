@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -18,7 +19,6 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    
     private UserRepository repository;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -34,14 +34,17 @@ public class UserServiceImpl implements UserService {
     }
 
     public void deleteUser(Long id) {
+
         repository.deleteById(id);
     }
 
 
-    public void addUser(User user) {
+    public void addUser(User user) throws SQLException {
+        if (repository.findByEmail(user.getEmail()) == null) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         repository.save(user);
-        System.out.println("User added");
+        System.out.println("User added");}
+        else throw new SQLException ("User with email " + user.getEmail() + " already exists");
     }
 
 

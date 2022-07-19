@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,7 +23,9 @@ public class User extends Human {
         this.cash = 0.0;
     }
 
-    @OneToMany(mappedBy = "id")
-    private Collection<Order> order;
+    @OneToMany(mappedBy = "order")
+    private List<Order> orders;
 
+    @OneToMany(mappedBy = "cart")
+    private List<Cart> carts;
 }

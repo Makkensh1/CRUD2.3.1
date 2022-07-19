@@ -27,5 +27,6 @@ public class Product {
     private Long id;
 
     private long stockBalance;
+
 }
 
