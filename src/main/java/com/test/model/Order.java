@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Order {
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "order_id")
     private User orderOwner;
 
     @Id

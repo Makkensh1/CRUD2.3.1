@@ -24,7 +24,7 @@ public class Role {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "employee")
+    @ManyToMany(mappedBy = "roles")
     private Collection<Employee> employees;
 
 }

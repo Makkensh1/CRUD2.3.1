@@ -17,20 +17,21 @@ public class Cart {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "cart_id")
     private User cartOwner;
 
     private double cartCost;
 
     private boolean statusPaid;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany( cascade = CascadeType.ALL)
     @JoinTable(
             name = "product_list",
-            joinColumns = { @JoinColumn(
+            joinColumns = @JoinColumn(
                     name = "cart_id", referencedColumnName = "id"),
-          @JoinColumn(
-                    name = "product_id", table = "products", referencedColumnName = "id")})
+            inverseJoinColumns = @JoinColumn(
+                    name = "product_id", referencedColumnName = "id"))
+
     private List<Product> productList;
 
 }

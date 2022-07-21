@@ -23,9 +23,9 @@ public class User extends Human {
         this.cash = 0.0;
     }
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy="orderOwner")
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy="cartOwner")
     private List<Cart> carts;
 }
